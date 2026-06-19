@@ -1,0 +1,122 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Domain Mapper Report</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header class="app-header">
+    <div>
+      <p class="eyebrow">ZX305 Network Security</p>
+      <h1>Domain Mapper Report</h1>
+      <p class="subtitle">Active Directory infrastructure map, service exposure, enumeration evidence, and Kerberos findings.</p>
+    </div>
+    <div class="header-meta">
+      <span id="domainName">Domain: Unknown</span>
+      <span id="dcIp">DC: Unknown</span>
+    </div>
+  </header>
+
+  <main>
+    <section class="stats-grid" aria-label="Report statistics">
+      <article class="stat-card">
+        <span class="stat-label">Hosts</span>
+        <strong id="statHosts">0</strong>
+      </article>
+      <article class="stat-card">
+        <span class="stat-label">Open Ports</span>
+        <strong id="statPorts">0</strong>
+      </article>
+      <article class="stat-card">
+        <span class="stat-label">High Severity</span>
+        <strong id="statHigh">0</strong>
+      </article>
+      <article class="stat-card">
+        <span class="stat-label">CVEs</span>
+        <strong id="statCves">0</strong>
+      </article>
+      <article class="stat-card">
+        <span class="stat-label">Credentials</span>
+        <strong id="statCreds">0</strong>
+      </article>
+      <article class="stat-card">
+        <span class="stat-label">AS-REP Hashes</span>
+        <strong id="statAsrep">0</strong>
+      </article>
+    </section>
+
+    <section class="summary-band">
+      <div>
+        <h2>Execution Summary</h2>
+        <p id="executionSummary">Waiting for injected scan data.</p>
+      </div>
+      <button id="resetFilters" type="button">Reset Filters</button>
+    </section>
+
+    <section class="filters" aria-label="Table filters">
+      <label>
+        Host
+        <select id="filterHost">
+          <option value="">All hosts</option>
+        </select>
+      </label>
+      <label>
+        Service
+        <select id="filterService">
+          <option value="">All services</option>
+        </select>
+      </label>
+      <label>
+        Protocol
+        <select id="filterProtocol">
+          <option value="">All protocols</option>
+        </select>
+      </label>
+      <label>
+        Severity
+        <select id="filterSeverity">
+          <option value="">All severities</option>
+        </select>
+      </label>
+      <label>
+        Finding
+        <select id="filterFinding">
+          <option value="">All findings</option>
+          <option value="cve">Has CVE</option>
+          <option value="creds">Has credentials</option>
+          <option value="ad">AD-related service</option>
+        </select>
+      </label>
+    </section>
+
+    <section class="table-wrap" aria-label="Service findings table">
+      <table id="findingsTable">
+        <thead>
+          <tr>
+            <th data-sort="host">Host</th>
+            <th data-sort="portNumber">Port</th>
+            <th data-sort="protocol">Protocol</th>
+            <th data-sort="service">Service</th>
+            <th data-sort="version">Version</th>
+            <th data-sort="severity">Severity</th>
+            <th data-sort="credentialsText">Credentials</th>
+            <th data-sort="cveText">Remediation</th>
+          </tr>
+        </thead>
+        <tbody id="findingsBody"></tbody>
+      </table>
+      <p id="emptyState" class="empty-state" hidden>No matching findings.</p>
+    </section>
+  </main>
+
+  <footer>
+    Sagi Golan | s11 | PERES25A | ZX305
+  </footer>
+
+  <script id="domainMapperData" type="application/json">[]</script>
+  <script id="domainMapperSummary" type="application/json">{}</script>
+  <script src="script.js"></script>
+</body>
+</html>
