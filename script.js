@@ -175,15 +175,29 @@
   }
 
   function updateSummary(summary) {
-    const domain = summary.domain || "Unknown";
-    const dcIp = summary.dc_ip || "Unknown";
+    const domain = summary.domain || "";
+    const dcIp = summary.dc_ip || "";
     const scan = tierName(summary.scan_level);
     const enumeration = tierName(summary.enumeration_level);
     const exploitation = tierName(summary.exploitation_level);
 
-    elements.domain.textContent = `Domain: ${domain}`;
-    elements.dc.textContent = `DC: ${dcIp}`;
+    if (domain) {
+      elements.domain.hidden = false;
+      elements.domain.textContent = `Domain: ${domain}`;
+    } else {
+      elements.domain.hidden = true;
+    }
+
+    if (dcIp) {
+      elements.dc.hidden = false;
+      elements.dc.textContent = `DC: ${dcIp}`;
+    } else {
+      elements.dc.hidden = true;
+    }
+
     elements.summary.textContent = `Scan tier: ${scan}. Enumeration tier: ${enumeration}. Exploitation tier: ${exploitation}. Output directory: ${summary.output_dir || "local scan directory"}.`;
+
+    document.body.classList.toggle("basic-report", String(summary.scan_level) === "1");
   }
 
   function tierName(value) {
@@ -285,7 +299,7 @@
     state.filteredRows.forEach((row) => {
       const tr = document.createElement("tr");
       tr.innerHTML = `
-        <td>${escapeHtml(row.host)}</td>
+        <td class="host-cell">${escapeHtml(row.host)}</td>
         <td>${escapeHtml(row.port)}</td>
         <td>${escapeHtml(row.protocol)}</td>
         <td>${escapeHtml(row.service)}</td>

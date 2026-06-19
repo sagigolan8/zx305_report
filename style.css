@@ -284,6 +284,11 @@ tbody tr:hover {
   text-align: center;
 }
 
+body.basic-report .host-control,
+body.basic-report .host-cell {
+  display: none;
+}
+
 footer {
   padding: 20px;
   color: var(--muted);

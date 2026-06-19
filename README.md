@@ -30,6 +30,7 @@ For compatibility with the earlier ZX301 dashboard, `script.js` also accepts `vu
 - Statistics cards for hosts, open ports, high severity findings, CVEs, credentials, and AS-REP hashes.
 - Sortable findings table.
 - Filters for host, service, protocol, severity, and finding type.
+- Basic-tier reports hide the Host/IP column to keep the report focused on services.
 - Credential badges when brute-force or spray results are present.
 - CVE remediation links to the National Vulnerability Database.
 - No external libraries or network dependencies after the files are downloaded.
