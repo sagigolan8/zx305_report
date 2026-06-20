@@ -144,27 +144,30 @@ main {
 
 .advanced-grid {
   display: grid;
-  grid-template-columns: repeat(3, minmax(220px, 1fr));
-  gap: 12px;
+  grid-template-columns: repeat(6, minmax(180px, 1fr));
+  gap: 8px;
 }
 
 .advanced-card {
-  min-height: 160px;
-  padding: 16px;
+  max-height: 150px;
+  padding: 12px;
+  overflow: auto;
   border: 1px solid var(--border);
   border-radius: 8px;
   background: var(--panel);
+  scrollbar-color: var(--border) transparent;
+  scrollbar-width: thin;
 }
 
 .advanced-card h3 {
-  margin: 0 0 10px;
+  margin: 0 0 8px;
   color: #bfdbfe;
-  font-size: 14px;
+  font-size: 13px;
 }
 
 .advanced-card ul {
   display: grid;
-  gap: 6px;
+  gap: 4px;
   margin: 0;
   padding: 0;
   list-style: none;
@@ -173,15 +176,15 @@ main {
 .advanced-card li {
   color: #dbeafe;
   font-family: Consolas, "Courier New", monospace;
-  font-size: 12px;
-  line-height: 1.35;
+  font-size: 11px;
+  line-height: 1.3;
   overflow-wrap: anywhere;
 }
 
 .card-note {
-  margin: 12px 0 0;
+  margin: 8px 0 0;
   color: var(--muted);
-  font-size: 12px;
+  font-size: 11px;
 }
 
 button,
@@ -360,7 +363,7 @@ footer {
   }
 
   .advanced-grid {
-    grid-template-columns: repeat(2, 1fr);
+    grid-template-columns: repeat(3, 1fr);
   }
 
   .filters {
