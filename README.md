@@ -12,7 +12,7 @@ https://raw.githubusercontent.com/sagigolan8/zx305_report/main
 
 - `index.html` - Report layout and JSON injection placeholders.
 - `style.css` - Dark cybersecurity-themed styling.
-- `script.js` - Data parsing, statistics, filtering, sorting, CVE links, and table rendering.
+- `script.js` - Data parsing, statistics, Advanced AD evidence rendering, filtering, sorting, CVE links, and table rendering.
 
 ## JSON Injection Points
 
@@ -31,6 +31,7 @@ For compatibility with the earlier ZX301 dashboard, `script.js` also accepts `vu
 - Sortable findings table.
 - Filters for host, service, protocol, severity, and finding type.
 - Basic-tier reports hide the Host/IP column to keep the report focused on services.
+- Advanced reports show a dedicated AD evidence section when credentialed enumeration artifacts are injected.
 - Credential badges when brute-force or spray results are present.
 - CVE remediation links to the National Vulnerability Database.
 - No external libraries or network dependencies after the files are downloaded.

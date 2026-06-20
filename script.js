@@ -39,7 +39,11 @@
     },
     summary: document.getElementById("executionSummary"),
     domain: document.getElementById("domainName"),
-    dc: document.getElementById("dcIp")
+    dc: document.getElementById("dcIp"),
+    advancedAd: {
+      section: document.getElementById("advancedAdSection"),
+      grid: document.getElementById("advancedAdGrid")
+    }
   };
 
   function parseJsonScript(ids, fallback) {
@@ -198,6 +202,42 @@
     elements.summary.textContent = `Scan tier: ${scan}. Enumeration tier: ${enumeration}. Exploitation tier: ${exploitation}. Output directory: ${summary.output_dir || "local scan directory"}.`;
 
     document.body.classList.toggle("basic-report", String(summary.scan_level) === "1");
+  }
+
+  function renderAdvancedAd(summary) {
+    const section = elements.advancedAd.section;
+    const grid = elements.advancedAd.grid;
+    const advanced = summary.advanced_ad || {};
+    const items = Array.isArray(advanced.items) ? advanced.items : [];
+
+    if (!section || !grid) {
+      return;
+    }
+
+    if (!advanced.available || !items.length) {
+      section.hidden = true;
+      grid.innerHTML = "";
+      return;
+    }
+
+    section.hidden = false;
+    grid.innerHTML = items.map((item) => {
+      const lines = Array.isArray(item.lines) ? item.lines : [];
+      const preview = lines.length
+        ? lines.map((line) => `<li>${escapeHtml(line)}</li>`).join("")
+        : "<li>No preview lines captured.</li>";
+      const extra = Number(item.line_count || 0) > lines.length
+        ? `<p class="card-note">Showing ${lines.length} of ${Number(item.line_count)} lines from ${escapeHtml(item.file || "artifact")}.</p>`
+        : `<p class="card-note">${escapeHtml(item.file || "artifact")}</p>`;
+
+      return `
+        <article class="advanced-card">
+          <h3>${escapeHtml(item.title || "AD Evidence")}</h3>
+          <ul>${preview}</ul>
+          ${extra}
+        </article>
+      `;
+    }).join("");
   }
 
   function tierName(value) {
@@ -359,6 +399,7 @@
 
     updateStats(summary);
     updateSummary(summary);
+    renderAdvancedAd(summary);
     populateFilters();
     bindEvents();
     applyFilters();
